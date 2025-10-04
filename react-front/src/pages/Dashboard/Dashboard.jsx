@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { createFeedback } from "../../api/feedback";
+import { createFeedback } from "../../api/auth";
 
 Modal.setAppElement("#root");
 

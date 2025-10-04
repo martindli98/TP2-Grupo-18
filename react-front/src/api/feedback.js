@@ -1,21 +1,23 @@
-import { API_URL } from './auth';
+// PUSE TODO DENTRO DE AUTH.JS SI SE LES ROMPE PUEDEN REVIVIR ESTE MUERTO, SINO LO BORRAN
 
-export async function createFeedback({ message, token } = {}) {
-  token = token || localStorage.getItem('jwt');
-  if (!token) throw new Error('No se encontró token de autenticación');
+// import { API_URL } from './auth';
 
-  const res = await fetch(`${API_URL}/api/feedbacks`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      data: { message }
-    })
-  });
+// export async function createFeedback({ message, token } = {}) {
+//   token = token || localStorage.getItem('jwt');
+//   if (!token) throw new Error('No se encontró token de autenticación');
 
-  const data = await res.json();
-  if (!res.ok) throw new Error(data?.error?.message || data?.message || JSON.stringify(data));
-  return data;
-}
+//   const res = await fetch(`${API_URL}/api/feedbacks`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Authorization': `Bearer ${token}`,
+//     },
+//     body: JSON.stringify({
+//       data: { message }
+//     })
+//   });
+
+//   const data = await res.json();
+//   if (!res.ok) throw new Error(data?.error?.message || data?.message || JSON.stringify(data));
+//   return data;
+// }
