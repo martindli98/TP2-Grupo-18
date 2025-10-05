@@ -5,7 +5,7 @@ const GymLandingPage = () => {
   return (
     <div className="bg-black text-white min-h-screen">
       
-      {/* Header */}
+      {/* Header  dasdadsadadas*/}
       {/* <header className="sticky top-0 z-50 bg-black shadow-md">
         <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
           <div className="text-2xl font-bold text-orange-500">GYM ZONE</div>
