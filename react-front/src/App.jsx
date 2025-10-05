@@ -5,17 +5,26 @@ import Login from './pages/Login/Login';
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Planes from './pages/Planes/Planes';
+import Home from './pages/Home/Home';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="/plans" element={<Planes />} />
-        <Route path="*" element={<h1>Home</h1>} />
-      </Routes>
-    </BrowserRouter>
+    <div className='w-full'>
+      <BrowserRouter>
+      <Header />
+      
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/plans" element={<Planes />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+
+      <Footer />
+      </BrowserRouter>
+    </div>
   );
 }

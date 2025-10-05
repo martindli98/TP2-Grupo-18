@@ -18,6 +18,7 @@ export default function Dashboard() {
     setError(null);
     setSuccess(null);
     try {
+      console.log(token)
       await createFeedback({ message, token });
       setSuccess("¡Gracias por tu comentario!");
       setMessage("");
@@ -33,56 +34,80 @@ export default function Dashboard() {
     window.location.href = "/login";
   };
 
-  return (
-    <div style={{ padding: "20px" }}>
-      <h1>Bienvenido al Dashboard 🔐</h1>
+   return (
+    <div
+      className="relative w-full h-screen bg-cover bg-center p-20"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')",
+      }}
+    >
       {user && (
-        <p>
-          Estás logueado como <strong>{user.username}</strong>
-        </p>
+        <div className="bg-black/70 p-8 rounded-lg">
+          <h1 className="text-white text-2xl font-bold mb-4">
+            Bienvenido al Dashboard 🔐
+          </h1>
+
+          <p className="text-white mb-4">
+            Estás logueado como <strong>{user.username}</strong>
+          </p>
+
+          <button
+            onClick={() => setIsOpen(true)}
+            className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 mb-4 hover:bg-blue-600 transition"
+          >
+            Enviar Feedback
+          </button>
+
+          <Modal
+            isOpen={isOpen}
+            onRequestClose={() => setIsOpen(false)}
+            style={{
+              content: {
+                maxWidth: "400px",
+                margin: "auto",
+                padding: "20px",
+                borderRadius: "10px",
+              },
+            }}
+          >
+            <h2>Enviar Comentario</h2>
+            <form onSubmit={handleSubmit}>
+              <textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Escribe tu comentario..."
+                rows="4"
+                className="w-full mb-4 p-2 border rounded-md text-black"
+                required
+              />
+              <button
+                type="submit"
+                className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition mr-2"
+              >
+                Enviar
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="bg-gray-300 px-4 py-2 rounded-md hover:bg-gray-400 transition"
+              >
+                Cerrar
+              </button>
+            </form>
+            {success && <p className="text-green-600 mt-2">{success}</p>}
+            {error && <p className="text-red-600 mt-2">{error}</p>}
+          </Modal>
+
+          <button
+            onClick={handleLogout}
+            className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
+          >
+            Cerrar sesión
+          </button>
+        </div>
       )}
-
-      <button
-        onClick={() => setIsOpen(true)}
-        style={{ marginTop: "10px", marginRight: "10px" }}
-      >
-        Enviar Feedback
-      </button>
-
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={() => setIsOpen(false)}
-        style={{
-          content: {
-            maxWidth: "400px",
-            margin: "auto",
-            padding: "20px",
-            borderRadius: "10px",
-          },
-        }}
-      >
-        <h2>Enviar Comentario</h2>
-        <form onSubmit={handleSubmit}>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Escribe tu comentario..."
-            rows="4"
-            style={{ width: "100%", marginBottom: "10px" }}
-            required
-          />
-          <button type="submit">Enviar</button>
-        </form>
-        {success && <p style={{ color: "green" }}>{success}</p>}
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button onClick={() => setIsOpen(false)} style={{ marginTop: "10px" }}>
-          Cerrar
-        </button>
-      </Modal>
-
-      <button onClick={handleLogout} style={{ marginTop: "20px" }}>
-        Cerrar sesión
-      </button>
     </div>
   );
-}
+};
+
