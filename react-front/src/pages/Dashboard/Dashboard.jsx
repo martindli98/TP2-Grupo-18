@@ -22,7 +22,10 @@ export default function Dashboard() {
       await createFeedback({ message, token });
       setSuccess("¡Gracias por tu comentario!");
       setMessage("");
-      setTimeout(() => setIsOpen(false), 1500);
+      setTimeout(() => {
+        setIsOpen(false);
+        window.location.href = '/'; // lo lleva a la página principal, asi dashboard queda para el feedback
+       }, 1500);
     } catch (err) {
       setError(err.message || "Error al enviar el comentario");
     }
@@ -45,7 +48,7 @@ export default function Dashboard() {
       {user && (
         <div className="bg-black/70 p-8 rounded-lg">
           <h1 className="text-white text-2xl font-bold mb-4">
-            Bienvenido al Dashboard 🔐
+            Envia tu feedback 🔐
           </h1>
 
           <p className="text-white mb-4">
@@ -56,7 +59,7 @@ export default function Dashboard() {
             onClick={() => setIsOpen(true)}
             className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 mb-4 hover:bg-blue-600 transition"
           >
-            Enviar Feedback
+            Escribir Feedback
           </button>
 
           <Modal

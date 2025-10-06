@@ -15,7 +15,7 @@ export default function Login() {
       const data = await login({ identifier: email, password });
       localStorage.setItem('jwt', data.jwt);
       localStorage.setItem('user', JSON.stringify(data.user));
-      navigate('/dashboard');
+      navigate('/');
     } catch (err) {
       setError(err.message);
     }

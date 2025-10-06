@@ -16,7 +16,7 @@ export default function Register() {
       const data = await register({ username, email, password });
       localStorage.setItem('jwt', data.jwt);
       localStorage.setItem('user', JSON.stringify(data.user));
-      navigate('/dashboard');
+      navigate('/');
     } catch (err) {
       setError(err.message);
     }

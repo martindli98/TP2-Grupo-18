@@ -4,7 +4,7 @@ import MembershipCard from "../../components/Membership/MembershipCArd";
 
 const Planes = () => {
   const [plans, setPlans] = useState([]);
- 
+
   useEffect(() => {
     const loadPlans = async () => {
       try {
@@ -40,10 +40,9 @@ const Planes = () => {
         <div className=" bg-black/70 rounded-lg p-10">
           <div className="container mx-auto px-6">
             <h2 className="text-4xl font-bold mb-12 text-center text-white">
-              Our Classes
+              Nuestros Planes
             </h2>
 
-        
             <div className="grid md:grid-cols-3 gap-8">
               {plans.map((membership) => (
                 <MembershipCard
@@ -51,6 +50,8 @@ const Planes = () => {
                   title={membership.name}
                   description={membership.description}
                   imageUrl={membership.imageUrl}
+                  price={membership.price}
+                  day={membership.day}
                 />
               ))}
             </div>
