@@ -18,14 +18,14 @@ export default function Dashboard() {
     setError(null);
     setSuccess(null);
     try {
-      console.log(token)
+      console.log(token);
       await createFeedback({ message, token });
       setSuccess("¡Gracias por tu comentario!");
       setMessage("");
       setTimeout(() => {
         setIsOpen(false);
-        window.location.href = '/'; // lo lleva a la página principal, asi dashboard queda para el feedback
-       }, 1500);
+        window.location.href = "/"; // lo lleva a la página principal, asi dashboard queda para el feedback
+      }, 1500);
     } catch (err) {
       setError(err.message || "Error al enviar el comentario");
     }
@@ -37,7 +37,7 @@ export default function Dashboard() {
     window.location.href = "/login";
   };
 
-   return (
+  return (
     <div
       className="relative w-full h-screen bg-cover bg-center p-20"
       style={{
@@ -48,7 +48,7 @@ export default function Dashboard() {
       {user && (
         <div className="bg-black/70 p-8 rounded-lg">
           <h1 className="text-white text-2xl font-bold mb-4">
-            Envia tu feedback 🔐
+            Bienvenido al Dashboard 🔐
           </h1>
 
           <p className="text-white mb-4">
@@ -112,5 +112,4 @@ export default function Dashboard() {
       )}
     </div>
   );
-};
-
+}

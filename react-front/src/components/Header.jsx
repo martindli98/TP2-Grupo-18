@@ -2,20 +2,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Header = () => {
-  
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const navigate = useNavigate();
-    useEffect(() => {
-      // Se ejecuta solo al montar el componente
+  useEffect(() => {
+    const updateUser = () => {
       const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
-    }, []);
+      setUser(storedUser ? JSON.parse(storedUser) : null);
+    };
+    updateUser();
+    window.addEventListener("user-changed", updateUser);
+    return () => window.removeEventListener("user-changed", updateUser);
+  }, []);
   const handleLogout = () => {
     localStorage.removeItem("user"); // borra el usuario
-    setUser(null);                   // actualiza el estado
-    navigate("/");                   // redirige al inicio
+    setUser(null); // actualiza el estado
+    navigate("/"); // redirige al inicio
   };
 
   return (
